@@ -1,0 +1,52 @@
+# ASP.NET Core
+## Ignore the bin and obj directories
+bin/
+obj/
+
+## Ignore user-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+## Ignore Rider files
+.idea/
+
+# Ignore build output directories
+*.dll
+*.exe
+*.app
+*.pkg
+*.so
+*.dylib
+*.dSYM
+*.class
+*.war
+*.jar
+
+# Ignore .NET SDK
+global.json
+
+# Ignore Visual Studio 2019+
+.vs/
+.vscode/
+
+# Ignore NuGet packages
+*.nupkg
+# Uncomment if necessary however generally it will be ignored via the bin/obj folders
+# packages/
+
+# Ignore package restore output
+packages/*
+!packages/build/
+
+# Uncomment if necessary however generally it will be ignored via the bin/obj folders
+# *.[Cc]ache
+# *.[Cc]ache/**
+
+# Ignore publishing outputs
+app.publish/
+
+# Ignore temporary files
+*.swp
+*.swo
+*.tmp
