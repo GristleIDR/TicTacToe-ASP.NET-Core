@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using TicTacToe_RESTAPI.Models;
+
 
 namespace TicTacToe_RESTAPI.Controllers
 {

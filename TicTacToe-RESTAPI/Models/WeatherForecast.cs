@@ -1,4 +1,4 @@
-namespace TicTacToe_RESTAPI
+namespace TicTacToe_RESTAPI.Models
 {
     public class WeatherForecast
     {
