@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe-RESTAPI", "TicTacToe-RESTAPI\TicTacToe-RESTAPI.csproj", "{F2154098-5464-47E4-B1D6-9B8EA89F1DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe-RESTAPI", "TicTacToe-RESTAPI\TicTacToe-RESTAPI.csproj", "{F2154098-5464-47E4-B1D6-9B8EA89F1DF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe-RESTAPI.Tests", "TicTacToe-RESTAPI.Tests\TicTacToe-RESTAPI.Tests.csproj", "{C04C92C9-5585-4AAF-B67E-B57B86D3A422}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F2154098-5464-47E4-B1D6-9B8EA89F1DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2154098-5464-47E4-B1D6-9B8EA89F1DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2154098-5464-47E4-B1D6-9B8EA89F1DF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C04C92C9-5585-4AAF-B67E-B57B86D3A422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C04C92C9-5585-4AAF-B67E-B57B86D3A422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C04C92C9-5585-4AAF-B67E-B57B86D3A422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C04C92C9-5585-4AAF-B67E-B57B86D3A422}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
