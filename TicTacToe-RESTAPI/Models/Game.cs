@@ -33,6 +33,78 @@ namespace TicTacToe_RESTAPI.Models
             set => this.current_player = value;
         }
 
+        public string Player_1_Username
+        {
+            get => this.player_1.Username;
+            set
+            {
+                if (value != "")
+                {
+                    this.player_1.Username = value;
+                } else
+                {
+                    this.player_1.Username = "Player 1";
+                }
+            }
+        }
+
+        public char Player_1_Symbol
+        {
+            get => this.player_1.Symbol;
+            set
+            {
+                if (this.player_1.Symbol == '\0' && this.player_2.Symbol == '\0' && (value == 'X' || value == 'x' || value == 'O' || value == 'o'))
+                {
+                    if (value == 'X' || value == 'x')
+                    {
+                        this.player_1.Symbol = 'X';
+                        this.player_2.Symbol = 'O';
+                    }
+                    else
+                    {
+                        this.player_1.Symbol = 'O';
+                        this.player_2.Symbol = 'X';
+                    }
+                }
+            }
+        }
+
+        public string Player_2_Username
+        {
+            get => this.player_2.Username;
+            set 
+            {
+                if (value != "")
+                {
+                    this.player_2.Username = value;
+                } else
+                {
+                    this.player_2.Username = "Player 2";
+                }
+            }
+        }
+
+        public char Player_2_Symbol
+        {
+            get => this.player_2.Symbol;
+            set
+            {
+                if (this.player_2.Symbol == '\0' && this.player_1.Symbol == '\0' && (value == 'X' || value == 'x' || value == 'O' || value == 'o'))
+                {
+                    if (value == 'X' || value == 'x')
+                    {
+                        this.player_2.Symbol = 'X';
+                        this.player_1.Symbol = 'O';
+                    }
+                    else
+                    {
+                        this.player_2.Symbol = 'O';
+                        this.player_1.Symbol = 'X';
+                    }
+                }
+            }
+        }
+
         public void PlayGame()
         {
             // Print The Title Screen
