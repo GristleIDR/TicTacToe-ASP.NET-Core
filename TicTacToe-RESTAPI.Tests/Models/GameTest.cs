@@ -11,8 +11,8 @@ namespace TicTacToe_RESTAPI.Tests.Models
             Game game = new Game();
 
             // Assert That Game Status is InProgress and The Current Player is 1
-            Assert.Equal(Game.Status.InProgress, game.GetStatus());
-            Assert.Equal(1, game.GetCurrentPlayer());
+            Assert.Equal(Game.Status.InProgress, game.Game_Status);
+            Assert.Equal(1, game.Current_Player);
         }
 
         [Fact]
@@ -22,22 +22,22 @@ namespace TicTacToe_RESTAPI.Tests.Models
             Game game = new Game();
 
             // Set Status to Win
-            game.SetStatus(Game.Status.Win);
+            game.Game_Status = Game.Status.Win;
 
             // Assert That Game Status is Win
-            Assert.Equal(Game.Status.Win, game.GetStatus());
+            Assert.Equal(Game.Status.Win, game.Game_Status);
 
             // Set Status to Draw
-            game.SetStatus(Game.Status.Draw);
+            game.Game_Status = Game.Status.Draw;
 
             // Assert That Game Status is Draw
-            Assert.Equal(Game.Status.Draw, game.GetStatus());
+            Assert.Equal(Game.Status.Draw, game.Game_Status);
 
             // Set Status to InProgress
-            game.SetStatus(Game.Status.InProgress);
+            game.Game_Status = Game.Status.InProgress;
 
             // Assert That Game Status is InProgress
-            Assert.Equal(Game.Status.InProgress, game.GetStatus());
+            Assert.Equal(Game.Status.InProgress, game.Game_Status);
         }
 
         [Fact]
@@ -47,16 +47,16 @@ namespace TicTacToe_RESTAPI.Tests.Models
             Game game = new Game();
 
             // Set Current Player to 2
-            game.SetCurrentPlayer(2);
+            game.Current_Player = 2;
 
             // Assert That Current Player is 2
-            Assert.Equal(2, game.GetCurrentPlayer());
+            Assert.Equal(2, game.Current_Player);
 
             // Set Current Player to 1
-            game.SetCurrentPlayer(1);
+            game.Current_Player = 1;
 
             // Assert That Current Player is 1
-            Assert.Equal(1, game.GetCurrentPlayer());
+            Assert.Equal(1, game.Current_Player);
         }
 
         [Fact]
@@ -66,17 +66,17 @@ namespace TicTacToe_RESTAPI.Tests.Models
             Game game = new Game();
 
             // Assert That Current Player is 1
-            Assert.Equal(1, game.GetCurrentPlayer());
+            Assert.Equal(1, game.Current_Player);
 
             game.SwitchPlayer();
 
             // Assert That The Current Player is 2
-            Assert.Equal(2, game.GetCurrentPlayer());
+            Assert.Equal(2, game.Current_Player);
 
             game.SwitchPlayer();
 
             // Assert That The Current Player is Back to 1
-            Assert.Equal(1, game.GetCurrentPlayer());
+            Assert.Equal(1, game.Current_Player);
         }
     }
 }

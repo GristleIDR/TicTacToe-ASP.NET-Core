@@ -21,11 +21,17 @@ namespace TicTacToe_RESTAPI.Models
             this.player_2 = new Player();
         }
 
-        public Status GetStatus() => this.game_status;
-        public void SetStatus(Status status) => this.game_status = status;
+        public Status Game_Status
+        {
+            get => this.game_status;
+            set => this.game_status = value;
+        }
 
-        public int GetCurrentPlayer() => this.current_player;
-        public void SetCurrentPlayer(int player) => this.current_player = player;
+        public int Current_Player
+        {
+            get => this.current_player;
+            set => this.current_player = value;
+        }
 
         public void PlayGame()
         {
@@ -46,63 +52,63 @@ namespace TicTacToe_RESTAPI.Models
             // Set Player 1 symbol
             if (player_1_symbol == "X")
             {
-                player_1.Symbol = 'X';
+                this.player_1.Symbol = 'X';
             }
             else if (player_1_symbol == "O")
             {
-                player_1.Symbol = 'O';
+                this.player_1.Symbol = 'O';
             }
             else
             {
-                player_1.Symbol = 'X';
+                this.player_1.Symbol = 'X';
             }
 
             // Give Player 2 The Opposite Symbol
-            if (player_1.Symbol == 'X')
+            if (this.player_1.Symbol == 'X')
             {
-                player_2.Symbol = 'O';
+                this.player_2.Symbol = 'O';
             }
             else
             {
-                player_2.Symbol = 'X';
+                this.player_2.Symbol = 'X';
             }
 
             // Set Player Selections in Their Objects
             if (player_1_username == "")
             {
-                player_1.Username = "Player 1";
+                this.player_1.Username = "Player 1";
             }
             else
             {
-                player_1.Username = player_1_username;
+                this.player_1.Username = player_1_username;
             }
 
             if (player_2_username == "")
             {
-                player_2.Username = "Player 2";
+                this.player_2.Username = "Player 2";
             }
             else
             {
-                player_2.Username = player_2_username;
+                this.player_2.Username = player_2_username;
             }
 
             // Review Selections
-            Console.WriteLine("\nPlayer 1: " + player_1.Username + " - Symbol: " + player_1.Symbol);
-            Console.WriteLine("Player 2: " + player_2.Username + " - Symbol: " + player_2.Symbol);
+            Console.WriteLine("\nPlayer 1: " + this.player_1.Username + " - Symbol: " + this.player_1.Symbol);
+            Console.WriteLine("Player 2: " + this.player_2.Username + " - Symbol: " + this.player_2.Symbol);
 
             // Play Game Till a Winner or Draw
             while (this.game_status == Status.InProgress)
             {
                 if (this.current_player == 1)
                 {
-                    Console.WriteLine("\n" + player_1.Username + " it is your turn...\n");
+                    Console.WriteLine("\n" + this.player_1.Username + " it is your turn...\n");
                 }
                 else
                 {
-                    Console.WriteLine("\n" + player_2.Username + " it is your turn...\n");
+                    Console.WriteLine("\n" + this.player_2.Username + " it is your turn...\n");
                 }
 
-                game_board.PrintBoard();
+                this.game_board.PrintBoard();
 
                 Console.WriteLine("Select X Coordinate: \n");
                 string x_axis = Console.ReadLine();
@@ -115,11 +121,11 @@ namespace TicTacToe_RESTAPI.Models
 
                 if (this.current_player == 1)
                 {
-                    game_board.MakeMove(player_1.Symbol, x, y);
+                    this.game_board.MakeMove(this.player_1.Symbol, x, y);
                 }
                 else
                 {
-                    game_board.MakeMove(player_2.Symbol, x, y);
+                    this.game_board.MakeMove(player_2.Symbol, x, y);
                 }
 
                 this.SwitchPlayer();
@@ -129,11 +135,11 @@ namespace TicTacToe_RESTAPI.Models
         }
         public void UpdateCurrentGameStatus()
         {
-            if (game_board.IsDraw())
+            if (this.game_board.IsDraw())
             {
                 this.game_status = Status.Draw;
             }
-            else if (game_board.IsWinner(player_1.Symbol) || game_board.IsWinner(player_2.Symbol))
+            else if (this.game_board.IsWinner(player_1.Symbol) || this.game_board.IsWinner(this.player_2.Symbol))
             {
                 this.game_status = Status.Win;
             }
@@ -165,18 +171,18 @@ namespace TicTacToe_RESTAPI.Models
             {
                 if (this.current_player == 1)
                 {
-                    Console.WriteLine("Congratulations " + player_2.Username + " You Have Won!\n");
+                    Console.WriteLine("Congratulations " + this.player_2.Username + " You Have Won!\n");
                 }
                 else
                 {
-                    Console.WriteLine("Congratulations " + player_1.Username + " You Have Won!\n");
+                    Console.WriteLine("Congratulations " + this.player_1.Username + " You Have Won!\n");
                 }
             }
             else if (this.game_status == Status.Draw)
             {
                 Console.WriteLine("The Game is a Draw!\n");
             }
-            game_board.PrintBoard();
+            this.game_board.PrintBoard();
         }
     }
 }
