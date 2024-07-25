@@ -78,5 +78,54 @@ namespace TicTacToe_RESTAPI.Tests.Models
             // Assert That The Current Player is Back to 1
             Assert.Equal(1, game.Current_Player);
         }
+
+        [Fact]
+        public void SetPlayer1UsernameTest()
+        {
+            // Create Test Object
+            Game game = new Game();
+
+            // Set Player 1 Username to "Test"
+            game.Player_1_Username = "Test";
+
+            // Assert That Player 1 Username is "Test"
+            Assert.Equal("Test", game.Player_1_Username);
+
+            // Set Player 1 Username to Empty
+            game.Player_1_Username = "";
+
+            // Assert That Player 1 Username is Empty
+            Assert.Equal("Player 1", game.Player_1_Username);
+
+            // Set Player 1 Username to Null
+            game.Player_1_Username = "\0";
+
+            // Assert That Player 1 Username is Empty
+            Assert.Equal("Player 1", game.Player_1_Username);
+        }
+
+        [Fact]
+        public void SetPlayer2UsernameTest() {
+            // Create Test Object
+            Game game = new Game();
+
+            // Set Player 2 Username to "Test"
+            game.Player_2_Username = "Test";
+
+            // Assert That Player 2 Username is "Test"
+            Assert.Equal("Test", game.Player_2_Username);
+
+            // Set Player 2 Username to Empty
+            game.Player_2_Username = "";
+
+            // Assert That Player 2 Username is Empty
+            Assert.Equal("Player 2", game.Player_2_Username);
+
+            // Set Player 2 Username to Null
+            game.Player_2_Username = "\0";
+
+            // Assert That Player 2 Username is Empty
+            Assert.Equal("Player 2", game.Player_2_Username);
+        }
     }
 }

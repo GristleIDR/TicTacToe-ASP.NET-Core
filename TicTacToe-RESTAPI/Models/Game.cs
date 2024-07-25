@@ -38,12 +38,12 @@ namespace TicTacToe_RESTAPI.Models
             get => this.player_1.Username;
             set
             {
-                if (value != "")
-                {
-                    this.player_1.Username = value;
-                } else
+                if (value == "" || value == "\0")
                 {
                     this.player_1.Username = "Player 1";
+                } else
+                {
+                    this.player_1.Username = value;
                 }
             }
         }
@@ -74,12 +74,12 @@ namespace TicTacToe_RESTAPI.Models
             get => this.player_2.Username;
             set 
             {
-                if (value != "")
-                {
-                    this.player_2.Username = value;
-                } else
+                if (value == "" || value == "\0")
                 {
                     this.player_2.Username = "Player 2";
+                } else
+                {
+                    this.player_2.Username = value;
                 }
             }
         }
