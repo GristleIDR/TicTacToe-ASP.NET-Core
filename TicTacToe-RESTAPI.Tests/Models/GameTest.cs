@@ -282,7 +282,7 @@ namespace TicTacToe_RESTAPI.Tests.Models
             Assert.Equal("Move Accepted", TestValidMove.MakeMove(0, 1));
 
             // Test Making Winning Move Player 1
-            // Expected Result: "Congratulations ? You Have Won!"
+            // Expected Result: "Congratulations 1 You Have Won!"
             TestWinningMovePlayer1.Player_1_Username = "Player 1";
             TestWinningMovePlayer1.Player_2_Username = "Player 2";
             TestWinningMovePlayer1.Player_1_Symbol = 'X';
@@ -293,8 +293,8 @@ namespace TicTacToe_RESTAPI.Tests.Models
             Assert.Equal("Move Accepted", TestWinningMovePlayer1.MakeMove(1, 1));
             Assert.Equal("Congratulations Player 1 You Have Won!", TestWinningMovePlayer1.MakeMove(2, 0));
 
-            // Test Making Winning Move Player 1
-            // Expected Result: "Congratulations ? You Have Won!"
+            // Test Making Winning Move Player 2
+            // Expected Result: "Congratulations 2 You Have Won!"
             TestWinningMovePlayer2.Player_1_Username = "Player 1";
             TestWinningMovePlayer2.Player_2_Username = "Player 2";
             TestWinningMovePlayer2.Player_1_Symbol = 'X';
