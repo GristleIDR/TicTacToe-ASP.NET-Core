@@ -233,5 +233,94 @@ namespace TicTacToe_RESTAPI.Tests.Models
             // Assert That Player 2 Symbol is O
             Assert.Equal('O', game4.Player_2_Symbol);
         }
+
+        [Fact]
+        public void MakeMoveTest()
+        {
+            // Create Test Objects
+            var TestGameNotSetup = new Game();
+            var TestInvalidMove = new Game();
+            var TestValidMove = new Game();
+            var TestWinningMovePlayer1 = new Game();
+            var TestWinningMovePlayer2 = new Game();
+            var TestDrawMove = new Game();
+
+            // Test Making A Move Before The Players Are Setup
+            // Expected Result: "Please Finish Setting Up The Players"
+            Assert.Equal("Please Finish Setting Up The Players", TestGameNotSetup.MakeMove(0, 0));
+
+            // Test Making Invalid Moves
+            // Expected Result: "Player ? Invalid Move"
+            TestInvalidMove.Player_1_Username = "Player 1";
+            TestInvalidMove.Player_2_Username = "Player 2";
+            TestInvalidMove.Player_1_Symbol = 'X';
+
+            // Test Player 1 Invalid Move
+            Assert.Equal("Player 1 Invalid Move", TestInvalidMove.MakeMove(3, 0));
+            Assert.Equal("Player 1 Invalid Move", TestInvalidMove.MakeMove(0, 3));
+            Assert.Equal("Player 1 Invalid Move", TestInvalidMove.MakeMove(3, 3));
+            Assert.Equal("Player 1 Invalid Move", TestInvalidMove.MakeMove(-2, -4));
+
+            TestInvalidMove.SwitchPlayer();
+
+            // Test Player 2 Invalid Move
+            Assert.Equal("Player 2 Invalid Move", TestInvalidMove.MakeMove(3, 0));
+            Assert.Equal("Player 2 Invalid Move", TestInvalidMove.MakeMove(0, 3));
+            Assert.Equal("Player 2 Invalid Move", TestInvalidMove.MakeMove(3, 3));
+            Assert.Equal("Player 2 Invalid Move", TestInvalidMove.MakeMove(-2, -4));
+
+            // Test Making Valid Moves
+            // Expected Result: "Move Accepted"
+            TestValidMove.Player_1_Username = "Player 1";
+            TestValidMove.Player_2_Username = "Player 2";
+            TestValidMove.Player_1_Symbol = 'X';
+
+            // Test Player 1 Valid Move
+            Assert.Equal("Move Accepted", TestValidMove.MakeMove(0, 0));
+
+            // Test Player 2 Valid Move
+            Assert.Equal("Move Accepted", TestValidMove.MakeMove(0, 1));
+
+            // Test Making Winning Move Player 1
+            // Expected Result: "Congratulations ? You Have Won!"
+            TestWinningMovePlayer1.Player_1_Username = "Player 1";
+            TestWinningMovePlayer1.Player_2_Username = "Player 2";
+            TestWinningMovePlayer1.Player_1_Symbol = 'X';
+
+            Assert.Equal("Move Accepted", TestWinningMovePlayer1.MakeMove(0, 0));
+            Assert.Equal("Move Accepted", TestWinningMovePlayer1.MakeMove(0, 1));
+            Assert.Equal("Move Accepted", TestWinningMovePlayer1.MakeMove(1, 0));
+            Assert.Equal("Move Accepted", TestWinningMovePlayer1.MakeMove(1, 1));
+            Assert.Equal("Congratulations Player 1 You Have Won!", TestWinningMovePlayer1.MakeMove(2, 0));
+
+            // Test Making Winning Move Player 1
+            // Expected Result: "Congratulations ? You Have Won!"
+            TestWinningMovePlayer2.Player_1_Username = "Player 1";
+            TestWinningMovePlayer2.Player_2_Username = "Player 2";
+            TestWinningMovePlayer2.Player_1_Symbol = 'X';
+
+            Assert.Equal("Move Accepted", TestWinningMovePlayer2.MakeMove(2, 2));
+            Assert.Equal("Move Accepted", TestWinningMovePlayer2.MakeMove(0, 0));
+            Assert.Equal("Move Accepted", TestWinningMovePlayer2.MakeMove(0, 1));
+            Assert.Equal("Move Accepted", TestWinningMovePlayer2.MakeMove(1, 0));
+            Assert.Equal("Move Accepted", TestWinningMovePlayer2.MakeMove(1, 1));
+            Assert.Equal("Congratulations Player 2 You Have Won!", TestWinningMovePlayer2.MakeMove(2, 0));
+
+            // Test Draw Move
+            // Expected Result: "The Game Was a Draw"
+            TestDrawMove.Player_1_Username = "Player 1";
+            TestDrawMove.Player_2_Username = "Player 2";
+            TestDrawMove.Player_1_Symbol = 'O';
+
+            Assert.Equal("Move Accepted", TestDrawMove.MakeMove(0, 0));
+            Assert.Equal("Move Accepted", TestDrawMove.MakeMove(0, 1));
+            Assert.Equal("Move Accepted", TestDrawMove.MakeMove(0, 2));
+            Assert.Equal("Move Accepted", TestDrawMove.MakeMove(2, 2));
+            Assert.Equal("Move Accepted", TestDrawMove.MakeMove(1, 1));
+            Assert.Equal("Move Accepted", TestDrawMove.MakeMove(1, 2));
+            Assert.Equal("Move Accepted", TestDrawMove.MakeMove(2, 1));
+            Assert.Equal("Move Accepted", TestDrawMove.MakeMove(2, 0));
+            Assert.Equal("The Game Was a Draw", TestDrawMove.MakeMove(1, 0));
+        }
     }
 }

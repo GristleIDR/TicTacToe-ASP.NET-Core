@@ -154,8 +154,7 @@ namespace TicTacToe_RESTAPI.Models
                         return "The Game Was a Draw";
                     }
                 }
-
-                return "Player " + this.Current_Player + " Move Accepted";
+                return "Move Accepted";
             }
         }
 
