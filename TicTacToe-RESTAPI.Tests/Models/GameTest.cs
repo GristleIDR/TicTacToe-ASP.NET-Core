@@ -127,5 +127,111 @@ namespace TicTacToe_RESTAPI.Tests.Models
             // Assert That Player 2 Username is Empty
             Assert.Equal("Player 2", game.Player_2_Username);
         }
+
+        [Fact]
+        public void SetPlayer1SymbolTest()
+        {
+            // Create Test Objects
+            var game1 = new Game();
+            var game2 = new Game();
+            var game3 = new Game();
+            var game4 = new Game();
+
+            // Set Player 1 Symbol to X
+            game1.Player_1_Symbol = 'X';
+            // Assert That Player 1 Symbol is X
+            Assert.Equal('X', game1.Player_1_Symbol);
+
+            // Set Player 1 Symbol to x
+            game2.Player_1_Symbol = 'x';
+            // Assert That Player 1 Symbol is X
+            Assert.Equal('X', game2.Player_1_Symbol);
+
+            // Set Player 1 Symbol to O
+            game3.Player_1_Symbol = 'O';
+            // Assert That Player 1 Symbol is O
+            Assert.Equal('O', game3.Player_1_Symbol);
+
+            // Set Player 1 Symbol to o
+            game4.Player_1_Symbol = 'o';
+            // Assert That Player 1 Symbol is O
+            Assert.Equal('O', game4.Player_1_Symbol);
+
+            // Test Attempting To Change Player 1 Symbol After It Has Been Set
+            // Expected Result: Player 1 Symbol Should Not Change
+
+            // Set Player 1 Symbol to X
+            game1.Player_1_Symbol = 'O';
+            // Assert That Player 1 Symbol is X
+            Assert.Equal('X', game1.Player_1_Symbol);
+
+            // Set Player 1 Symbol to x
+            game2.Player_1_Symbol = 'o';
+            // Assert That Player 1 Symbol is X
+            Assert.Equal('X', game2.Player_1_Symbol);
+
+            // Set Player 1 Symbol to O
+            game3.Player_1_Symbol = 'X';
+            // Assert That Player 1 Symbol is O
+            Assert.Equal('O', game3.Player_1_Symbol);
+
+            // Set Player 1 Symbol to o
+            game4.Player_1_Symbol = 'x';
+            // Assert That Player 1 Symbol is O
+            Assert.Equal('O', game4.Player_1_Symbol);
+        }
+
+        [Fact]
+        public void SetPlayer2SymbolTest()
+        {
+            // Create Test Objects
+            var game1 = new Game();
+            var game2 = new Game();
+            var game3 = new Game();
+            var game4 = new Game();
+
+            // Set Player 2 Symbol to X
+            game1.Player_2_Symbol = 'X';
+            // Assert That Player 2 Symbol is X
+            Assert.Equal('X', game1.Player_2_Symbol);
+
+            // Set Player 2 Symbol to x
+            game2.Player_2_Symbol = 'x';
+            // Assert That Player 2 Symbol is X
+            Assert.Equal('X', game2.Player_2_Symbol);
+
+            // Set Player 2 Symbol to O
+            game3.Player_2_Symbol = 'O';
+            // Assert That Player 2 Symbol is O
+            Assert.Equal('O', game3.Player_2_Symbol);
+
+            // Set Player 2 Symbol to o
+            game4.Player_2_Symbol = 'o';
+            // Assert That Player 2 Symbol is O
+            Assert.Equal('O', game4.Player_2_Symbol);
+
+            // Test Attempting To Change Player 2 Symbol After It Has Been Set
+            // Expected Result: Player 2 Symbol Should Not Change
+
+            // Set Player 2 Symbol to X
+            game1.Player_2_Symbol = 'O';
+            // Assert That Player 2 Symbol is X
+            Assert.Equal('X', game1.Player_2_Symbol);
+
+            // Set Player 2 Symbol to x
+            game2.Player_2_Symbol = 'o';
+            // Assert That Player 2 Symbol is X
+            Assert.Equal('X', game2.Player_2_Symbol);
+
+            // Set Player 2 Symbol to O
+            game3.Player_2_Symbol = 'X';
+            // Assert That Player 2 Symbol is O
+            Assert.Equal('O', game3.Player_2_Symbol);
+
+            // Set Player 2 Symbol to o
+            game4.Player_2_Symbol = 'x';
+            // Assert That Player 2 Symbol is O
+            Assert.Equal('O', game4.Player_2_Symbol);
+        }
     }
 }
