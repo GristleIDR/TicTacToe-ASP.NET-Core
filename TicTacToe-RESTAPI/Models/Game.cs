@@ -1,4 +1,5 @@
-﻿using TicTacToe_RESTAPI.Models;
+﻿using System.Reflection.Metadata.Ecma335;
+using TicTacToe_RESTAPI.Models;
 
 namespace TicTacToe_RESTAPI.Models
 {
@@ -41,7 +42,8 @@ namespace TicTacToe_RESTAPI.Models
                 if (value == "" || value == "\0")
                 {
                     this.player_1.Username = "Player 1";
-                } else
+                }
+                else
                 {
                     this.player_1.Username = value;
                 }
@@ -72,12 +74,13 @@ namespace TicTacToe_RESTAPI.Models
         public string Player_2_Username
         {
             get => this.player_2.Username;
-            set 
+            set
             {
                 if (value == "" || value == "\0")
                 {
                     this.player_2.Username = "Player 2";
-                } else
+                }
+                else
                 {
                     this.player_2.Username = value;
                 }
@@ -105,106 +108,62 @@ namespace TicTacToe_RESTAPI.Models
             }
         }
 
-        public void PlayGame()
+        public string MakeMove(int x, int y)
         {
-            // Print The Title Screen
-            this.PrintTitleScreen();
-
-            // Get Player 1 Username
-            Console.WriteLine("Player 1: Please Select a Username: ");
-            string player_1_username = Console.ReadLine();
-
-            Console.WriteLine("\n" + player_1_username + ", Please Choose Your Symbol (X or O): ");
-            string player_1_symbol = Console.ReadLine().ToUpper();
-
-            // Get Player 2 Username
-            Console.WriteLine("\nPlayer 2: Please Select a Username: ");
-            string player_2_username = Console.ReadLine();
-
-            // Set Player 1 symbol
-            if (player_1_symbol == "X")
+            // Check To Make Sure The Players Are Set
+            if (this.Player_1_Symbol == '\0' || this.Player_2_Symbol == '\0' || this.Player_1_Username == "" || this.Player_2_Username == "")
             {
-                this.player_1.Symbol = 'X';
+                return "Please Finish Setting Up The Players";
             }
-            else if (player_1_symbol == "O")
+
+            // If the move is out of bounds or a player has already claimed the square, return an error message
+            if (x < 0 || x > 2 || y < 0 || y > 2 || game_board.GetPosition(x, y) != '\0')
             {
-                this.player_1.Symbol = 'O';
+                return "Player " + this.Current_Player + " Invalid Move";
             }
             else
             {
-                this.player_1.Symbol = 'X';
-            }
-
-            // Give Player 2 The Opposite Symbol
-            if (this.player_1.Symbol == 'X')
-            {
-                this.player_2.Symbol = 'O';
-            }
-            else
-            {
-                this.player_2.Symbol = 'X';
-            }
-
-            // Set Player Selections in Their Objects
-            if (player_1_username == "")
-            {
-                this.player_1.Username = "Player 1";
-            }
-            else
-            {
-                this.player_1.Username = player_1_username;
-            }
-
-            if (player_2_username == "")
-            {
-                this.player_2.Username = "Player 2";
-            }
-            else
-            {
-                this.player_2.Username = player_2_username;
-            }
-
-            // Review Selections
-            Console.WriteLine("\nPlayer 1: " + this.player_1.Username + " - Symbol: " + this.player_1.Symbol);
-            Console.WriteLine("Player 2: " + this.player_2.Username + " - Symbol: " + this.player_2.Symbol);
-
-            // Play Game Till a Winner or Draw
-            while (this.game_status == Status.InProgress)
-            {
-                if (this.current_player == 1)
-                {
-                    Console.WriteLine("\n" + this.player_1.Username + " it is your turn...\n");
-                }
-                else
-                {
-                    Console.WriteLine("\n" + this.player_2.Username + " it is your turn...\n");
-                }
-
-                this.game_board.PrintBoard();
-
-                Console.WriteLine("Select X Coordinate: \n");
-                string x_axis = Console.ReadLine();
-
-                Console.WriteLine("\nSelect Y Coordinate: \n");
-                string y_axis = Console.ReadLine();
-
-                int x = int.Parse(x_axis);
-                int y = int.Parse(y_axis);
-
                 if (this.current_player == 1)
                 {
                     this.game_board.MakeMove(this.player_1.Symbol, x, y);
                 }
                 else
                 {
-                    this.game_board.MakeMove(player_2.Symbol, x, y);
+                    this.game_board.MakeMove(this.player_2.Symbol, x, y);
                 }
 
                 this.SwitchPlayer();
                 this.UpdateCurrentGameStatus();
+
+                // Check for Game Conclusion
+                if (this.Game_Status == Status.Win || this.Game_Status == Status.Draw)
+                {
+                    if (this.game_status == Status.Win)
+                    {
+                        if (this.current_player == 1)
+                        {
+                            return "Congratulations " + this.player_2.Username + " You Have Won!";
+                        }
+                        else
+                        {
+                            return "Congratulations " + this.player_1.Username + " You Have Won!";
+                        }
+                    }
+                    else
+                    {
+                        return "The Game Was a Draw";
+                    }
+                }
+
+                return "Player " + this.Current_Player + " Move Accepted";
             }
-            this.PrintEndGame();
         }
+
+        public char[,] ShowGameBoard()
+        {
+            return this.game_board.BoardState;
+        }
+
         public void UpdateCurrentGameStatus()
         {
             if (this.game_board.IsDraw())
@@ -230,31 +189,6 @@ namespace TicTacToe_RESTAPI.Models
             {
                 this.current_player = 1;
             }
-        }
-        public void PrintTitleScreen()
-        {
-            Console.WriteLine("--------------------------[ TicTacToe ]--------------------------\nProgrammer: Isaac Replogle\nGithub Project: https://github.com/GristleIDR/TicTacToe-CSharp\n\nWelcome...\n\n");
-        }
-        public void PrintEndGame()
-        {
-            Console.WriteLine("\n--------------------------[ TicTacToe ]--------------------------");
-
-            if (this.game_status == Status.Win)
-            {
-                if (this.current_player == 1)
-                {
-                    Console.WriteLine("Congratulations " + this.player_2.Username + " You Have Won!\n");
-                }
-                else
-                {
-                    Console.WriteLine("Congratulations " + this.player_1.Username + " You Have Won!\n");
-                }
-            }
-            else if (this.game_status == Status.Draw)
-            {
-                Console.WriteLine("The Game is a Draw!\n");
-            }
-            this.game_board.PrintBoard();
         }
     }
 }
