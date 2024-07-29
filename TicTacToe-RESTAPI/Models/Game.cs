@@ -117,7 +117,7 @@ namespace TicTacToe_RESTAPI.Models
             }
 
             // If the move is out of bounds or a player has already claimed the square, return an error message
-            if (x < 0 || x > 2 || y < 0 || y > 2 || game_board.GetPosition(x, y) != '\0')
+            if (x < 0 || x > 2 || y < 0 || y > 2 || this.game_board.GetPosition(x, y) != '\0')
             {
                 return "Player " + this.Current_Player + " Invalid Move";
             }

@@ -322,5 +322,32 @@ namespace TicTacToe_RESTAPI.Tests.Models
             Assert.Equal("Move Accepted", TestDrawMove.MakeMove(2, 0));
             Assert.Equal("The Game Was a Draw", TestDrawMove.MakeMove(1, 0));
         }
+
+        [Fact]
+        public void ShowGameBoardTest()
+        {
+            // Create Test Object
+            Game game = new Game();
+
+            // Setup The Player Information
+            game.Player_1_Username = "Player 1";
+            game.Player_2_Username = "Player 2";
+            game.Player_1_Symbol = 'X';
+
+            // Assert That The Game Board is Empty
+            Assert.Equal(new char[,] { { '\0', '\0', '\0' }, { '\0', '\0', '\0' }, { '\0', '\0', '\0' } }, game.ShowGameBoard());
+
+            // Make A Move
+            game.MakeMove(0, 0);
+
+            // Assert That The Game Board Has The Move
+            Assert.Equal(new char[,] { { 'X', '\0', '\0' }, { '\0', '\0', '\0' }, { '\0', '\0', '\0' } }, game.ShowGameBoard());
+
+            // Make Another Move
+            game.MakeMove(0, 1);
+
+            // Assert That The Game Board Has The Move
+            Assert.Equal(new char[,] { { 'X', 'O', '\0' }, { '\0', '\0', '\0' }, { '\0', '\0', '\0' } }, game.ShowGameBoard());
+        }
     }
 }
