@@ -189,5 +189,17 @@ namespace TicTacToe_RESTAPI.Models
                 this.current_player = 1;
             }
         }
+
+        public string ResetGame()
+        {
+            this.game_status = Status.InProgress;
+            this.current_player = 1;
+
+            this.game_board.ClearBoard();
+            this.player_1.ResetPlayer();
+            this.player_2.ResetPlayer();
+
+            return "Game Reset";
+        }
     }
 }

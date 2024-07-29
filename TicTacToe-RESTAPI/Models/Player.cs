@@ -53,5 +53,15 @@
         {
             this.losses++;
         }
+
+        public string ResetPlayer()
+        {
+            this.username = "";
+            this.symbol = '\0';
+            this.wins = 0;
+            this.losses = 0;
+
+            return "Player Reset";
+        }
     }
 }

@@ -57,9 +57,9 @@ namespace TicTacToe_RESTAPI.Controllers
         }
 
         [HttpPut("ResetGame")]
-        public string ResetGame()
+        public IActionResult ResetGame()
         {
-            return "Game Reset";
+            return Ok(_game.ResetGame());
         }
 
         private char[][] ConvertToJaggedArray(char[,] multiArray)

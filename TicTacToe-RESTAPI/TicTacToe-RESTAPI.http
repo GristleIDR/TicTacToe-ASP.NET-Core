@@ -1,10 +1,7 @@
 @TicTacToe_RESTAPI_HostAddress = http://localhost:32769
 
-GET {{TicTacToe_RESTAPI_HostAddress}}/weatherforecast/
+GET {{TicTacToe_RESTAPI_HostAddress}}/test/
 Accept: application/json
 
 ###
-
-GET {{TicTacToe_RESTAPI_HostAddress}}/test/
-Accept: application/json
 
