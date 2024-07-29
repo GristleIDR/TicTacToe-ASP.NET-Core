@@ -23,6 +23,45 @@ namespace TicTacToe_RESTAPI.Controllers
             return Ok(jaggedArray);
         }
 
+        [HttpPut("SetPlayerOneUsername")]
+        public IActionResult SetPlayerOneUserName([FromQuery] string username)
+        {
+            _game.Player_1_Username = username;
+            return Ok(_game.Player_1_Username);
+        }
+
+        [HttpPut("SetPlayerTwoUsername")]
+        public IActionResult SetPlayerTwoUserName([FromQuery] string username)
+        {
+            _game.Player_2_Username = username;
+            return Ok(_game.Player_2_Username);
+        }
+
+        [HttpPut("SetPlayerOneSymbol")]
+        public IActionResult SetPlayerOneSymbol([FromQuery] char symbol)
+        {
+            _game.Player_1_Symbol = symbol;
+            return Ok(_game.Player_1_Symbol);
+        }
+
+        [HttpPut("MakeMove")]
+        public IActionResult MakeMove([FromQuery] int x, [FromQuery] int y)
+        {
+            return Ok(_game.MakeMove(x, y));
+        }
+
+        [HttpGet("CheckGameStatus")]
+        public IActionResult CheckGameStatus()
+        {
+           return Ok(_game.Game_Status);
+        }
+
+        [HttpPut("ResetGame")]
+        public string ResetGame()
+        {
+            return "Game Reset";
+        }
+
         private char[][] ConvertToJaggedArray(char[,] multiArray)
         {
             int rows = multiArray.GetLength(0);
@@ -39,18 +78,6 @@ namespace TicTacToe_RESTAPI.Controllers
             }
 
             return jaggedArray;
-        }
-
-        [HttpPut("CheckGameStatus")]
-        public string CheckGameStatus()
-        {
-           return "Game Status";
-        }
-
-        [HttpPut("ResetGame")]
-        public string ResetGame()
-        {
-            return "Game Reset";
         }
     }
 }
