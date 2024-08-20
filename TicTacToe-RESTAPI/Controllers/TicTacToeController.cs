@@ -15,33 +15,49 @@ namespace TicTacToe_RESTAPI.Controllers
             _game = game;
         }
 
-        [HttpGet("ShowGameBoard")]
-        public IActionResult ShowGameBoard()
+        [HttpGet("GameBoard")]
+        public char[][] GameBoard()
         {
             char[,] gameBoard = _game.ShowGameBoard();
             char[][] jaggedArray = ConvertToJaggedArray(gameBoard);
-            return Ok(jaggedArray);
+            return jaggedArray;
         }
 
-        [HttpPut("SetPlayerOneUsername")]
-        public IActionResult SetPlayerOneUserName([FromQuery] string username)
+        [HttpPut("Player/Username/{playerNumber}")]
+        public string SetPlayerOneUserName(int playerNumber, [FromQuery] string username)
         {
-            _game.Player_1_Username = username;
-            return Ok(_game.Player_1_Username);
+            if (playerNumber == 1)
+            {
+                _game.Player_1_Username = username;
+                return _game.Player_1_Username;
+            } else if (playerNumber == 2)
+            {
+                _game.Player_2_Username = username;
+                return _game.Player_2_Username;
+            } else
+            {
+                return "Invalid player number. Only 1 or 2 are allowed.";
+            }
+            
         }
 
-        [HttpPut("SetPlayerTwoUsername")]
-        public IActionResult SetPlayerTwoUserName([FromQuery] string username)
+        [HttpPut("Player/Symbol/{playerNumber}")]
+        public char SetPlayerOneSymbol(int playerNumber, [FromQuery] char symbol)
         {
-            _game.Player_2_Username = username;
-            return Ok(_game.Player_2_Username);
-        }
-
-        [HttpPut("SetPlayerOneSymbol")]
-        public IActionResult SetPlayerOneSymbol([FromQuery] char symbol)
-        {
-            _game.Player_1_Symbol = symbol;
-            return Ok(_game.Player_1_Symbol);
+            if (playerNumber == 1)
+            {
+               _game.Player_1_Symbol = symbol;
+                return _game.Player_1_Symbol;
+            }
+            else if (playerNumber == 2)
+            {
+                _game.Player_2_Symbol = symbol;
+                return _game.Player_2_Symbol;
+            }
+            else
+            {
+                return 'Z';
+            }
         }
 
         [HttpPut("MakeMove")]
@@ -50,8 +66,8 @@ namespace TicTacToe_RESTAPI.Controllers
             return Ok(_game.MakeMove(x, y));
         }
 
-        [HttpGet("CheckGameStatus")]
-        public IActionResult CheckGameStatus()
+        [HttpGet("GameStatus")]
+        public IActionResult GameStatus()
         {
            return Ok(_game.Game_Status);
         }
