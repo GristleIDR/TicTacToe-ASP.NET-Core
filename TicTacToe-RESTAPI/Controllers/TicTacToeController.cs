@@ -61,21 +61,21 @@ namespace TicTacToe_RESTAPI.Controllers
         }
 
         [HttpPut("MakeMove")]
-        public IActionResult MakeMove([FromQuery] int x, [FromQuery] int y)
+        public string MakeMove([FromQuery] int x, [FromQuery] int y)
         {
-            return Ok(_game.MakeMove(x, y));
+            return _game.MakeMove(x, y);
         }
 
         [HttpGet("GameStatus")]
-        public IActionResult GameStatus()
+        public string GameStatus()
         {
-           return Ok(_game.Game_Status);
+           return _game.Game_Status.ToString();
         }
 
         [HttpPut("ResetGame")]
-        public IActionResult ResetGame()
+        public string ResetGame()
         {
-            return Ok(_game.ResetGame());
+            return _game.ResetGame();
         }
 
         private char[][] ConvertToJaggedArray(char[,] multiArray)
