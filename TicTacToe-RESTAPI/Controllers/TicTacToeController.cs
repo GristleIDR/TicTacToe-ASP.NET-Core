@@ -23,8 +23,26 @@ namespace TicTacToe_RESTAPI.Controllers
             return jaggedArray;
         }
 
-        [HttpPut("Player/Username/{playerNumber}")]
-        public string SetPlayerOneUserName(int playerNumber, [FromQuery] string username)
+        [HttpGet("Player/{playerNumber}/Username")]
+        public string PlayerUsername(int playerNumber)
+        {
+            if (playerNumber == 1)
+            {
+                return _game.Player_1_Username;
+            }
+            else if (playerNumber == 2)
+            {
+                return _game.Player_2_Username;
+            }
+            else
+            {
+                return "Invalid player number. Only 1 or 2 are allowed.";
+            }
+        }
+
+
+        [HttpPut("Player/{playerNumber}/Username")]
+        public string PlayerUsername(int playerNumber, [FromQuery] string username)
         {
             if (playerNumber == 1)
             {
@@ -41,8 +59,25 @@ namespace TicTacToe_RESTAPI.Controllers
             
         }
 
-        [HttpPut("Player/Symbol/{playerNumber}")]
-        public char SetPlayerOneSymbol(int playerNumber, [FromQuery] char symbol)
+        [HttpGet("Player/{playerNumber}/Symbol")]
+        public char PlayerSymbol(int playerNumber)
+        {
+            if (playerNumber == 1)
+            {
+                return _game.Player_1_Symbol;
+            }
+            else if (playerNumber == 2)
+            {
+                return _game.Player_2_Symbol;
+            }
+            else
+            {
+                return 'Z';
+            }
+        }
+
+        [HttpPut("Player/{playerNumber}/Symbol")]
+        public char PlayerSymbol(int playerNumber, [FromQuery] char symbol)
         {
             if (playerNumber == 1)
             {
