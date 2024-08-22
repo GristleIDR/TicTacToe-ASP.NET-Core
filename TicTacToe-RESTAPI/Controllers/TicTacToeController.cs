@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using System.Numerics;
 using TicTacToe_RESTAPI.Models;
 
 namespace TicTacToe_RESTAPI.Controllers
@@ -16,101 +18,101 @@ namespace TicTacToe_RESTAPI.Controllers
         }
 
         [HttpGet("GameBoard")]
-        public char[][] GameBoard()
+        public ActionResult<char[][]> GameBoard()
         {
             char[,] gameBoard = _game.ShowGameBoard();
             char[][] jaggedArray = ConvertToJaggedArray(gameBoard);
-            return jaggedArray;
+            return Ok(jaggedArray);
         }
 
         [HttpGet("Player/{playerNumber}/Username")]
-        public string PlayerUsername(int playerNumber)
+        public ActionResult<string> PlayerUsername(int playerNumber)
         {
             if (playerNumber == 1)
             {
-                return _game.Player_1_Username;
+                return Ok(_game.Player_1_Username);
             }
             else if (playerNumber == 2)
             {
-                return _game.Player_2_Username;
+                return Ok(_game.Player_2_Username);
             }
             else
             {
-                return "Invalid player number. Only 1 or 2 are allowed.";
+                return BadRequest("Invalid player number. Only 1 or 2 are allowed.");
             }
         }
 
 
         [HttpPut("Player/{playerNumber}/Username")]
-        public string PlayerUsername(int playerNumber, [FromQuery] string username)
+        public ActionResult<string> PlayerUsername(int playerNumber, [FromQuery] string username)
         {
             if (playerNumber == 1)
             {
                 _game.Player_1_Username = username;
-                return _game.Player_1_Username;
+                return Ok(_game.Player_1_Username);
             } else if (playerNumber == 2)
             {
                 _game.Player_2_Username = username;
-                return _game.Player_2_Username;
+                return Ok(_game.Player_2_Username);
             } else
             {
-                return "Invalid player number. Only 1 or 2 are allowed.";
+                return BadRequest("Invalid player number. Only 1 or 2 are allowed.");
             }
             
         }
 
         [HttpGet("Player/{playerNumber}/Symbol")]
-        public char PlayerSymbol(int playerNumber)
+        public ActionResult<char> PlayerSymbol(int playerNumber)
         {
             if (playerNumber == 1)
             {
-                return _game.Player_1_Symbol;
+                return Ok(_game.Player_1_Symbol);
             }
             else if (playerNumber == 2)
             {
-                return _game.Player_2_Symbol;
+                return Ok(_game.Player_2_Symbol);
             }
             else
             {
-                return 'Z';
+                return BadRequest("Invalid player number. Only 1 or 2 are allowed.");
             }
         }
 
         [HttpPut("Player/{playerNumber}/Symbol")]
-        public char PlayerSymbol(int playerNumber, [FromQuery] char symbol)
+        public ActionResult<char> PlayerSymbol(int playerNumber, [FromQuery] char symbol)
         {
             if (playerNumber == 1)
             {
                _game.Player_1_Symbol = symbol;
-                return _game.Player_1_Symbol;
+                return Ok(_game.Player_1_Symbol);
             }
             else if (playerNumber == 2)
             {
                 _game.Player_2_Symbol = symbol;
-                return _game.Player_2_Symbol;
+                return Ok(_game.Player_2_Symbol);
             }
             else
             {
-                return 'Z';
+                return BadRequest("Invalid player number. Only 1 or 2 are allowed.");
             }
         }
 
         [HttpPut("MakeMove")]
-        public string MakeMove([FromQuery] int x, [FromQuery] int y)
+        public ActionResult<string> MakeMove([FromQuery] int x, [FromQuery] int y)
         {
-            return _game.MakeMove(x, y);
+            return Ok(_game.MakeMove(x, y));
         }
 
         [HttpGet("GameStatus")]
-        public string GameStatus()
+        public ActionResult<string> GameStatus()
         {
-           return _game.Game_Status.ToString();
+           return Ok(_game.Game_Status.ToString());
         }
 
         [HttpPut("ResetGame")]
-        public string ResetGame()
+        public ActionResult<string> ResetGame()
         {
-            return _game.ResetGame();
+            return Ok(_game.ResetGame());
         }
 
         private char[][] ConvertToJaggedArray(char[,] multiArray)
